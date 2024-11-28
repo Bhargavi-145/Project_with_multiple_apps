@@ -16,15 +16,15 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from tollywood.views import *
-from bollywood.views import *
-from hollywood.views import *
+import bollywood, hollywood, tollywood
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('pushpa/', pushpa, name='pushpa'),
-    path('Dangal/', Dangal, name='Dangal'),
-    path('avengers/', avengers, name='avengers'),
+    path('three/', three, name='three'),            #generic url
+    path('bollywood/', include('bollywood.urls')),  #specific url
+    path('hollywood/', include('hollywood.urls')),  #specific url
+    path('tollywood/', include('tollywood.urls')),  #specific url
 ]
